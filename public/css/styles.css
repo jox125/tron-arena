@@ -312,22 +312,22 @@ input {
 }
 
 .player-vehicle--blue {
-    background: url("../assets/images/characters/cycle_blue.png") no-repeat center / cover;
+    background: url("../assets/images/characters/cycle_blue.webp") no-repeat center / cover;
     background-size: contain;
 }
 
 .player-vehicle--red {
-    background: url("../assets/images/characters/cycle_red.png") no-repeat center / cover;
+    background: url("../assets/images/characters/cycle_red.webp") no-repeat center / cover;
     background-size: contain;
 }
 
 .player-vehicle--yellow {
-    background: url("../assets/images/characters/cycle_yellow.png") no-repeat center / cover;
+    background: url("../assets/images/characters/cycle_yellow.webp") no-repeat center / cover;
     background-size: contain;
 }
 
 .player-vehicle--green {
-    background: url("../assets/images/characters/cycle_green.png") no-repeat center / cover;
+    background: url("../assets/images/characters/cycle_green.webp") no-repeat center / cover;
     background-size: contain;
 }
 
