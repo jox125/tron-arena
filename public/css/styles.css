@@ -537,6 +537,7 @@ input {
 #arena {
     --arena-color: var(--cyan);
 
+    contain: layout style paint;
     position: relative;
     overflow: hidden;
     width: 800px;
@@ -553,6 +554,7 @@ input {
 .overlay {
     --overlay-color: var(--cyan);
 
+    contain: layout style;
     position: fixed;
     z-index: 10;
     inset: 0;
@@ -567,18 +569,19 @@ input {
     background-size: 52px 52px, 52px 52px, auto;
 }
 
-.overlay::before {
+.overlay__scan {
     position: absolute;
-    inset: 0;
+    inset-inline: 0;
+    top: -100%;
+    height: 100%;
     background: linear-gradient(
         transparent 0,
         color-mix(in srgb, var(--overlay-color) 7%, transparent) 50%,
         transparent 100%
     );
-    content: "";
-    animation: overlay-scan 2.2s linear infinite;
     pointer-events: none;
     will-change: transform;
+    animation: overlay-scan 2.2s linear infinite;
 }
 
 .winner-celebration {
@@ -608,6 +611,7 @@ input {
         -76px 0 0 -1px var(--firework-color),
         -54px -54px 0 -1px var(--firework-color);
     filter: drop-shadow(0 0 8px var(--firework-color));
+    will-change: transform, opacity;
 }
 
 .firework--one {
@@ -678,6 +682,7 @@ input {
         0 0 34px var(--overlay-color),
         0 0 90px color-mix(in srgb, var(--overlay-color) 70%, transparent);
     transform-origin: center;
+    will-change: transform, opacity;
 }
 
 .countdown__number.is-ticking {
@@ -701,12 +706,9 @@ input {
     width: 310px;
     height: 118px;
     opacity: 0;
-    filter:
-        drop-shadow(0 10px 5px rgba(0, 0, 0, 0.75))
-        drop-shadow(0 0 9px color-mix(in srgb, var(--overlay-color) 72%, transparent));
     pointer-events: none;
     transform-origin: center;
-    will-change: transform, opacity, filter;
+    will-change: transform, opacity;
 }
 
 .countdown-cycle.is-riding {
@@ -742,11 +744,10 @@ input {
     right: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
+    background: linear-gradient(
         to bottom,
-        transparent 0 14px,
-        color-mix(in srgb, var(--overlay-color) 16%, transparent) 15px,
-        transparent 16px
+        transparent 0%,
+        color-mix(in srgb, var(--overlay-color) 10%, transparent) 100%
     );
     box-shadow: inset -12px 0 18px color-mix(in srgb, var(--overlay-color) 38%, transparent);
     content: "";
@@ -937,15 +938,9 @@ input {
     height: 67px;
     border: 6px solid #030405;
     border-radius: 50%;
-    background:
-        radial-gradient(circle, #05070a 0 10%, #54616c 11% 14%, #080b0f 15% 30%, transparent 31%),
-        repeating-conic-gradient(from 5deg, #34404a 0 4deg, #090c10 5deg 17deg);
-    box-shadow:
-        inset 0 0 0 3px #202830,
-        inset 0 0 0 7px var(--overlay-color),
-        inset 0 0 14px var(--overlay-color),
-        0 0 0 2px #242b32,
-        0 0 12px color-mix(in srgb, var(--overlay-color) 82%, transparent);
+    background: #1a2028;
+    box-shadow: 0 0 0 2px #242b32, 0 0 12px color-mix(in srgb, var(--overlay-color) 82%, transparent);
+    will-change: transform;
 }
 
 .countdown-cycle__wheel::before {
@@ -1225,7 +1220,7 @@ input {
 @keyframes countdown-arrive {
     0% {
         opacity: 0;
-        transform: translateZ(-520px) scale(0.18);
+        transform: scale(0.18);
     }
 
     45% {
@@ -1234,7 +1229,7 @@ input {
 
     100% {
         opacity: 0.88;
-        transform: translateZ(0) scale(1);
+        transform: scale(1);
     }
 }
 
@@ -1252,7 +1247,7 @@ input {
 
 @keyframes cycle-wheel-spin {
     to {
-        rotate: 1turn;
+        transform: rotate(1turn);
     }
 }
 
