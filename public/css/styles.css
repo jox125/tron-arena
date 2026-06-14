@@ -571,16 +571,16 @@ input {
 
 .overlay__scan {
     position: absolute;
-    inset-inline: 0;
-    top: -100%;
-    height: 100%;
+    inset: 0;
+    height: 120px;
     background: linear-gradient(
-        transparent 0,
+        transparent,
         color-mix(in srgb, var(--overlay-color) 7%, transparent) 50%,
-        transparent 100%
+        transparent
     );
     pointer-events: none;
     will-change: transform;
+    transform: translateY(-20vh);
     animation: overlay-scan 2.2s linear infinite;
 }
 
@@ -708,12 +708,13 @@ input {
     opacity: 0;
     pointer-events: none;
     transform-origin: center;
-    will-change: transform, opacity;
+    will-change: transform;
 }
 
 .countdown-cycle.is-riding {
     /* Four server countdown phases at 750ms each: 3, 2, 1 and launch. */
     animation: cycle-ride 3000ms linear forwards;
+    will-change: transform;
 }
 
 .countdown-cycle__trail {
@@ -940,7 +941,6 @@ input {
     border-radius: 50%;
     background: #1a2028;
     box-shadow: 0 0 0 2px #242b32, 0 0 12px color-mix(in srgb, var(--overlay-color) 82%, transparent);
-    will-change: transform;
 }
 
 .countdown-cycle__wheel::before {
@@ -1253,11 +1253,11 @@ input {
 
 @keyframes overlay-scan {
     from {
-        transform: translateY(-100%);
+        transform: translateY(-20vh);
     }
 
     to {
-        transform: translateY(100%);
+        transform: translateY(120vh);
     }
 }
 
@@ -1301,7 +1301,6 @@ input {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .overlay::before,
     .countdown__number.is-ticking,
     .countdown-cycle.is-riding,
     .countdown-cycle.is-riding .countdown-cycle__wheel,
