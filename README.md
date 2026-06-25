@@ -27,7 +27,9 @@ We use onrender.com for cloud staging and live multiplayer synchronization tests
 
 Skip the local setup and jump directly onto the global grid to play with friends online here:
  https://tron-arena.onrender.com/
----
+
+
+
 # Game Specification
 
 ## 1. Features
