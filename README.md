@@ -1,4 +1,34 @@
-# Light Cycle Arena — Game Specification
+# Light Cycle Arena
+
+### Installation & Local Setup
+
+1. **Clone the repository:**
+    ```bash
+   git clone https://gitea.kood.tech/rainliivamagi/multi-player.git
+   cd multi-player
+   ```
+
+2. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3. **Start the server:**
+    ```bash
+    npm start
+   ```
+4. **Play the game locally:**  
+Open your browser and navigate to:
+   * Recommended (with full Autofill support): http://127.0.0.1:3000
+
+   * Standard Hostname: http://localhost:3000
+
+### 🌐 Live Deployment
+We use onrender.com for cloud staging and live multiplayer synchronization tests.
+
+Skip the local setup and jump directly onto the global grid to play with friends online here:
+ https://tron-arena.onrender.com/
+---
+# Game Specification
 
 ## 1. Features
 
@@ -70,4 +100,17 @@ Power-ups materialize dynamically at random continuous coordinates across the ar
 
 * **Trail Breaker (Shield):** A passive, permanent insurance policy with no expiration timer. Upon colliding with a deadly trail segment, the shield shatters, destroying that specific obstructing trail obstacle to open a path while the user survives unscathed.
 
-* *Interaction Rule:* If a player activates a **Ghost** power-up while holding a **Trail Breaker** shield, the shield remains dormant. The Trail Breaker will only trigger if a collision occurs *after* the Ghost phase duration has fully expired.
+* *Interaction Rule:* If a player activates a **Ghost** power-up while holding a **Trail Breaker** shield, the shield remains dormant. The Trail Breaker will only trigger if a collision occurs *after* the Ghost phase duration has fully expired.  
+
+
+
+---
+## 5. Audio & Soundtrack
+
+This project features an original, custom electronic OST:
+
+* **Soundtrack Composition:** All music tracks and audio arrangements are original works composed and produced by **Rain Liivamägi**.
+* **Lobby Theme:** Loops seamlessly while players are organizing match settings in the room.
+* **Arena Match Theme:** A high-energy dynamic track that kicks in exactly on the first frame of movement when the countdown hits zero.
+
+Audio assets are preloaded and managed via the Web Audio API using the Howler.js framework.
