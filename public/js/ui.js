@@ -366,6 +366,14 @@ function createPlayerItem(player, className) {
     const score = document.createElement('span');
     const statusIcons = document.createElement('div');
 
+    const textGroup = document.createElement('div');
+    textGroup.style.cssText = `
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+    `;
+
     item.className = className;
     item.style.setProperty('--player-color', player.color);
     color.className = 'player-color';
@@ -374,10 +382,14 @@ function createPlayerItem(player, className) {
         `P${player.playerNumber} · ${player.name}${player.isHost ? ' (Host)' : ''}`;
     score.className = 'player-score';
     score.textContent = `${player.score ?? 0} wins`;
+    score.style.fontSize = '0.78rem';
+    score.style.marginTop = '2px';
     statusIcons.className = 'player-status-icons';
     statusIcons.id = `status-${player.id}`;
 
-    item.append(color, name, score, statusIcons);
+    textGroup.append(name, score);
+
+    item.append(color, textGroup, statusIcons);
     return item;
 }
 

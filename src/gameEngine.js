@@ -41,12 +41,6 @@ export function updateGamePhysics() {
         player.x += player.dx;
         player.y += player.dy;
 
-        // Track leading segment expansion values
-        const currentSegment = gameState.trails.find(t => t.id === player.currentTrailId);
-        if (currentSegment) {
-            currentSegment.x2 = player.x;
-            currentSegment.y2 = player.y;
-        }
         // Handle screen wrapping calculations
         let crossedBoundary = false;
         if (player.x > ARENA_WIDTH)  { player.x = 0; crossedBoundary = true; }
@@ -70,6 +64,17 @@ export function updateGamePhysics() {
            eliminatePlayer(player.id);
         }
     });
+
+    // Safely expand the active trail segment lengths for survivors
+    Object.values(gameState.players).forEach(player => {
+        if (!player.isAlive) return;
+
+        const currentSegment = gameState.trails.find(t => t.id === player.currentTrailId);
+        if (currentSegment) {
+            currentSegment.x2 = player.x;
+            currentSegment.y2 = player.y;
+        }
+    });
 }
 
 export function getNextPlayerNumber() {
@@ -81,6 +86,11 @@ export function getNextPlayerNumber() {
 }
 
 export function startNewTrailSegment(player) {
+    // Before switching IDs, preserve the one we just finished capping
+    if (player.currentTrailId) {
+        player.previousTrailId = player.currentTrailId;
+    }
+
     const segmentId = `${player.id}-${Date.now()}-${Math.random()}`;
 
     const newSegment = {
